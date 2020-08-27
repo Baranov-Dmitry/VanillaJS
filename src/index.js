@@ -9,6 +9,4 @@ const excel = new Excel('#app', {
   components: [Header, Toolbar, Formula, Table]
 })
 
-console.log('Excel', excel)
-console.log('Render', excel.rander())
-
+excel.render()
