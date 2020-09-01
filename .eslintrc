@@ -13,7 +13,8 @@
     "linebreak-style": 0,
     "no-trailing-spaces": [2, { "skipBlankLines": true }],
     "operator-linebreak": "off",
-    "no-debugger": "off"
+    "no-debugger": "off",
+    "max-len": ["error", { "code": 100 }]
   },
   "extends": ["eslint:recommended", "google"]
 }
