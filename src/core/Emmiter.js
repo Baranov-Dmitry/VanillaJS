@@ -5,9 +5,12 @@ export class Emmiter {
 
   // Уведомлеям слушателей если они есть
   emit(event, ...args) {
+    // проверяем есть ли данное событие (event)
     if (!Array.isArray(this.listeners[event])) {
       return false
     }
+    
+    //
     this.listeners[event].forEach(listener => {
       listener(...args)
     })
@@ -16,8 +19,13 @@ export class Emmiter {
 
   // подписываемся на уведомления
   subscribe(event, fn) {
+    // создаем пустой массив с ключом event без пораметра по дефолту [] не булет работать push
     this.listeners[event] = this.listeners[event] || []
+
+    // в массив пушим функции для вызова их по срабатыванию события
     this.listeners[event].push(fn)
+
+    // возвращаем функцию для отписки замыкаем переменую event в колбек функции
     return () => {
       this.listeners[event] = this.listeners[event].filter(listener => {
         return listener !== fn
@@ -26,7 +34,7 @@ export class Emmiter {
   }
 }
 
-// example
+// // example
 // const emmiter = new Emmiter()
 //
 // const uncubscribe = emmiter.subscribe('Dmitry', data => console.log('Sub: ', data))

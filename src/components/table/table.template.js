@@ -1,5 +1,6 @@
 import {toInlineStyles} from '@core/utils';
 import {parse} from '@core/parse';
+import {defaultStyles} from '@/constants';
 
 const CODES = {
   A: 65,
@@ -21,8 +22,9 @@ function toCell(state, row) {
   return (_, col) => {
     const id = `${row}:${col}`
     const data = state.dataState[id]
+    console.log(state)
     const styles = toInlineStyles({
-      ...defaultStatus,
+      ...defaultStyles,
       ...state.stylesState[id]
     })
     return `
@@ -96,7 +98,6 @@ export function createTable(rowsCount = 15, state = {}) {
     const emptyCols = []
     emptyCols.push(new Array(colsCount)
         .fill('')
-        // .map((_, col) => toCell(row, col))
         .map(toCell(state, row,))
         .join('')
     )
